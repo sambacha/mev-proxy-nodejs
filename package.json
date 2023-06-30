@@ -1,0 +1,74 @@
+{
+  "name": "@manifoldx/mev-proxy",
+  "version": "0.0.1",
+  "description": "A proxy contract for MEV ETH Protocol",
+  "main": "dist/index.js",
+  "files": [
+    "/dist/**/*",
+    "/src",
+    "/contracts/base",
+    "/contracts/interfaces",
+    "/contracts/libraries",
+    "/artifacts/contracts/**/*.json",
+    "!artifacts/contracts/**/*.dbg.json",
+    "!artifacts/contracts/test/**/*",
+    "!artifacts/contracts/base/**/*"
+  ],
+  "directories": {
+    "src": "src",
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "build": "npm run-script compile",
+    "compile": "npx hardhat compile",
+    "coverage": "npx hardhat coverage",
+    "test": "npx hardhat test",
+    "forge:compile": "forge build",
+    "forge:test": "forge test --fork-url $(grep ARCHIVE_NODE_URL_GOERLI_L2 .env | cut -d '=' -f2) --etherscan-api-key $(grep ETHERSCAN_API_KEY .env | cut -d '=' -f2) --gas-report -vvv",
+    "format": "forge fmt",
+    "forge:coverage": "forge coverage --fork-url $(grep ARCHIVE_NODE_URL_GOERLI_L2 .env | cut -d '=' -f2)",
+    "coverage:generate-lcov": "forge coverage --fork-url $(grep ARCHIVE_NODE_URL_GOERLI_L2 .env | cut -d '=' -f2) --report lcov",
+    "check:upgradeability": "slither-check-upgradeability . Account --proxy-name AccountProxy",
+    "analysis:solsat": "solstat --path ./src",
+    "analysis:slither": "slither .",
+    "gas-snapshot": "forge snapshot --fork-url $(grep ARCHIVE_NODE_URL_GOERLI_L2 .env | cut -d '=' -f2)",
+    "view-storage-layout": "slither --print variable-order ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manifoldfinance/mev-proxy.git"
+  },
+  "keywords": [],
+  "author": "SEE CONTRIBUTORS",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/manifoldfinance/mev-proxy/issues"
+  },
+  "homepage": "https://github.com/manifoldfinance/mev-proxy#readme",
+  "devDependencies": {
+    "@swc-node/core": "^1.10.4",
+    "@swc-node/register": "^1.6.6",
+    "@tenderly/hardhat-tenderly": "^1.7.7",
+    "@typechain/ethers-v5": "^11.0.0",
+    "@typechain/ethers-v6": "^0.4.0",
+    "@typechain/hardhat": "^8.0.0",
+    "@types/node": "^18",
+    "@typescript/analyze-trace": "^0.10.0",
+    "dotenv": "^16.3.1",
+    "ethers": "^6.6.2",
+    "hardhat": "^2.16.1",
+    "prettier": "^2.8.8",
+    "prettier-config-solidity": "^1.9.1",
+    "process-tracing": "^1.0.2",
+    "ts-node": "^10.9.1",
+    "tslib": "^2.6.0",
+    "tsutils": "^3.21.0",
+    "typechain": "^8.2.0",
+    "typecheck.macro": "^0.7.3",
+    "typescript": "^5"
+  },
+  "volta": {
+    "node": "18.16.1"
+  }
+}

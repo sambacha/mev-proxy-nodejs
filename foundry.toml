@@ -1,6 +1,146 @@
+# -*- mode: toml; -*-
 [profile.default]
 src = "src"
+test = "test"
+script = "script"
 out = "out"
 libs = ["lib"]
+remappings = [
+    "ds-test/=lib/forge-std/lib/ds-test/src/",
+    "forge-std/=lib/forge-std/src/",
+]
+auto_detect_remappings = true
+libraries = []
+cache = true
+cache_path = "cache"
+broadcast = "broadcast"
+allow_paths = []
+include_paths = []
+force = false
+evm_version = "shanghai"
+# evm_version = "paris"
+gas_reports = ["*"]
+gas_reports_ignore = []
+auto_detect_solc = true
+offline = false
+optimizer = true
+optimizer_runs = 200
+verbosity = 3
+# Ignored Error codes
+# 2018 Function state mutability can be restricted to pure
+# 3420 Source file does not specify required compiler version
+# 3716 Multiple SPDX license identifiers found in source file
+ignored_error_codes = [
+	1878,
+	2018,
+	3420,
+	3716,
+]
+#ignored_error_codes = [
+#    "license",
+#    "code-size",
+#    "init-code-size",
+#]
+deny_warnings = false
+build_info = false
+ffi = false
 
-# See more config options https://github.com/foundry-rs/foundry/tree/master/config
+sender = '0xafFEaFFEAFfeAfFEAffeaFfEAfFEaffeafFeAFfE'
+tx_origin = '0xAaaaAaAAaaaAAaAAaAaaaaAAAAAaAaaaAaAaaAA0'
+
+initial_balance = "0xffffffffffffffffffffffff"
+block_number = 1
+gas_limit = 9223372036854775807
+# why the fuck is the default set to 0? 
+block_base_fee_per_gas = 1
+block_coinbase = "0x0000000000000000000000000000000000000000"
+block_timestamp = 1
+block_difficulty = 0
+block_prevrandao = "0x0000000000000000000000000000000000000000000000000000000000000000"
+
+memory_limit = 33_554_432
+# includes the contract's metadata in the contract's json artifact
+extra_output = ['irOptimized', 'evm.assembly']
+# emits the output selection as separate json artifact files
+extra_output_files = ['metadata']
+names = false
+sizes = false
+via_ir = false
+no_storage_caching = false
+no_rpc_rate_limit = false
+bytecode_hash = "none"
+cbor_metadata = false
+sparse_mode = false
+
+[[profile.default.fs_permissions]]
+access = "read"
+path = "out"
+
+[profile.default.rpc_storage_caching]
+chains = "all"
+endpoints = "all"
+
+
+[profile.ci]
+optimizer = false
+fuzz_runs = 4_069
+force = true
+verbosity = 4
+gas_reports = ["*"]
+
+[fmt]
+line_length = 120
+tab_width = 4
+bracket_spacing = false
+int_types = "long"
+multiline_func_header = "attributes_first"
+quote_style = "double"
+number_underscore = "preserve"
+single_line_statement_blocks = "preserve"
+override_spacing = false
+wrap_comments = false
+ignore = []
+contract_new_lines = false
+
+[doc]
+out = "docs"
+title = ""
+book = "book.toml"
+homepage = "README.md"
+ignore = []
+
+[fuzz]
+runs = 512
+max_test_rejects = 65536
+dictionary_weight = 40
+include_storage = true
+include_push_bytes = true
+max_fuzz_dictionary_addresses = 15728640
+max_fuzz_dictionary_values = 6553600
+
+[invariant]
+max_fuzz_dictionary_addresses = 15728640
+max_fuzz_dictionary_values = 6553600
+shrink_sequence = true
+# The number of runs that must execute for each invariant test group
+runs = 1024
+# The number of calls executed to attempt to break invariants in one run
+depth = 100
+# Fails the invariant fuzzing if a revert occurs
+fail_on_revert = false
+# Allows overriding an unsafe external call when running invariant tests. eg. reentrancy checks
+call_override = false
+# The weight of the dictionary
+dictionary_weight = 80
+# The flag indicating whether to include values from storage
+include_storage = true
+# The flag indicating whether to include push bytes values
+include_push_bytes = true
+
+[profile.default.optimizer_details]
+# constantOptimizer = true
+yul = true
+# this sets the `yulDetails` of the `optimizer_details` for the `default` profile
+[profile.default.optimizer_details.yulDetails]
+stackAllocation = false
+optimizerSteps = 'u'

@@ -1,9 +1,11 @@
 /// SPDX-License-Identifier: MIT
 // OpenZeppelin Contracts (last updated v4.9.0) (utils/StorageSlot.sol)
-// This file was procedurally generated from scripts/generate/templates/StorageSlot.js.
+// @note This file was procedurally generated from scripts/generate/templates/StorageSlot.js.
 
 pragma solidity =0.8.19;
 
+/// @title LibStorageSlot
+/// @author  OpenZeppelin Contracts (last updated v4.9.0) (utils/StorageSlot.sol)
 /**
  * @dev Library for reading and writing primitive types to specific storage slots.
  *
